@@ -17,17 +17,28 @@ const getCountries = async (currencyCodes) => {
 };
 
 // convert currency with Promise
-const convertCurrency = (from, to, amount) => {
-  // fix scoping issues
-  let convertedAmount;
-  return getExchangeRate(from, to).then((rate) => {
-    convertedAmount = (amount * rate).toFixed(2);
-    // console.log(convertedAmount);
-    return getCountries(to);
-  }).then((countries) => {
-    // console.log(countries)
-    return `${amount.toFixed(2)} ${from} is worth ${convertedAmount} ${to}.  You can spend it in the following countries: ${countries.join(', ')}`;
-  });
+// const convertCurrency = (from, to, amount) => {
+//   // fix scoping issues
+//   let convertedAmount;
+//   return getExchangeRate(from, to).then((rate) => {
+//     convertedAmount = (amount * rate).toFixed(2);
+//     // console.log(convertedAmount);
+//     return getCountries(to);
+//   }).then((countries) => {
+//     // console.log(countries)
+//     return `${amount.toFixed(2)} ${from} is worth ${convertedAmount} ${to}.  You can spend it in the following countries: ${countries.join(', ')}`;
+//   });
+// };
+
+// async function
+const convertCurrency = async (from, to, amount) => {
+  const exchangeRate = await getExchangeRate(from, to);
+  // console.log(`exchangeRate: ${exchangeRate}`);
+  const convertedAmount = (amount * exchangeRate).toFixed(2);
+  // console.log(`Converted Amount: ${convertedAmount}`);
+  const countriesList = await getCountries(to);
+  // console.log(`Countries List: ${countriesList.join(', ')}`)
+  return `${amount.toFixed(2)} ${from} is worth ${convertedAmount} ${to}.  You can spend it in the following countries: ${countriesList.join(', ')}`
 };
 
 // // get exchange rate
