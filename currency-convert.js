@@ -1,4 +1,3 @@
-// http://data.fixer.io/api/latest?access_key=66a4222cd9f915f9f1a198a96f9ca6d6
 // load axios module
 const axios = require('axios');
 
@@ -21,7 +20,7 @@ const convertCurrency = async (from, to, amount) => {
   const exchangeRate = await getExchangeRate(from, to);
   const countriesList = await getCountries(to);
   const convertedAmount = (amount * exchangeRate).toFixed(2);
-  
+
   return `${amount.toFixed(2)} ${from} is worth ${convertedAmount} ${to}.  You can spend it in the following countries: ${countriesList.join(', ')}`
 };
 
