@@ -42,25 +42,3 @@ convertCurrency('CAD', 'USD', 20).then((message) => {
 }).catch((e) => {
   console.log(e.message);
 });
-
-// const add = async (a, b) => a + b + c
-//
-// const doWork = async () => {
-//   try {
-//     const result = await add(10, 15);
-//     return result;
-//   } catch (e) {
-//     return 5;
-//   }
-// };
-
-// const doWork = async () => {
-//   const result = await add(10, 15);
-//   return result;
-// };
-
-// doWork().then((data) => {
-//   console.log(data);
-// }).catch((e) => {
-//   console.log('Something went wrong.');
-// });
